@@ -12,11 +12,11 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px 50px;
-  background: #1e1e2e;   /* same as index.html */
+  background: #1e1e2e; /* same as index.html */
 }
 
 .logo {
-  width: 150px;  /* bigger logo like index.html */
+  width: 150px; /* bigger logo like index.html */
   height: auto;
 }
 
@@ -25,7 +25,7 @@ body {
   text-decoration: none;
   color: white;
   font-weight: 600;
-  font-size: 20px;  
+  font-size: 20px;
   padding: 10px 18px;
   border-radius: 6px;
   transition: background 0.3s ease;
@@ -80,7 +80,8 @@ form label {
   display: block;
 }
 
-input, select {
+input,
+select {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -113,4 +114,31 @@ input::placeholder {
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+/* Style for select dropdown */
+select {
+  background-color: #2c2f48; /* Dark background */
+  color: white; /* Text color */
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+  appearance: none; /* Removes default arrow styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+/* Style for dropdown options */
+select option {
+  background-color: #2c2f48; /* Dropdown background */
+  color: white; /* Dropdown text color */
+}
+
+/* Hover and Focus styles */
+select:hover,
+select:focus {
+  border-color: #7f00ff; /* Purple border */
+  outline: none;
 }
