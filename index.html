@@ -6,18 +6,41 @@
     <title>SLISS - Welcome</title>
     <link rel="stylesheet" href="style.css" />
     <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: #0e0e1a;
+        color: white;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
       /* Navbar */
       .navbar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 20px;
+        padding: 15px 40px;
         background: #1e1e2e;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
       }
 
       .navbar .logo {
         width: 150px;
-        height: auto;
+        transition: transform 0.3s ease;
+      }
+
+      .navbar .logo:hover {
+        transform: scale(1.1);
       }
 
       .nav-links a {
@@ -25,63 +48,122 @@
         text-decoration: none;
         color: white;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 18px;
         padding: 10px 18px;
         border-radius: 6px;
-        transition: background 0.3s ease;
+        transition: all 0.3s ease;
       }
 
       .nav-links a:hover {
         background: #8b5cf6;
         color: white;
+        transform: scale(1.05);
       }
 
       /* Hero Section */
       .hero {
         text-align: center;
-        padding: 60px 20px;
-        background: #111122;
+        padding: 100px 20px;
+        background: linear-gradient(135deg, #1a1a3a, #3b1d64, #8b5cf6);
         color: white;
+        animation: fadeIn 1.2s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .hero .hero-logo {
         width: 200px;
-        height: auto;
         margin-bottom: 20px;
+        animation: bounce 3s infinite ease-in-out;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
       }
 
       .hero h1 {
-        font-size: 36px;
+        font-size: 40px;
         margin-bottom: 15px;
+        letter-spacing: 1.5px;
       }
 
       .hero p {
         font-size: 18px;
-        margin-bottom: 20px;
-        color: #ccc;
+        margin-bottom: 30px;
+        color: #ddd;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .btn {
         font-size: 20px;
-        padding: 14px 28px;
-        border-radius: 8px;
+        padding: 14px 30px;
+        border-radius: 50px;
         border: none;
         cursor: pointer;
         background: linear-gradient(90deg, #8b5cf6, #d946ef);
         color: white;
         font-weight: bold;
-        transition: opacity 0.3s ease;
+        transition: all 0.3s ease;
       }
 
       .btn:hover {
-        opacity: 0.85;
+        transform: scale(1.1);
+        opacity: 0.9;
+      }
+
+      /* About Section */
+      .about {
+        padding: 60px 20px;
+        background: #141428;
+        text-align: center;
+        animation: fadeInUp 1.5s ease;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .about h2,
+      .about h3 {
+        color: #c084fc;
+        margin-bottom: 20px;
+      }
+
+      .about p {
+        max-width: 800px;
+        margin: 0 auto 30px auto;
+        color: #ddd;
       }
 
       /* Login Modal */
       .modal {
         display: none;
         position: fixed;
-        z-index: 10;
+        z-index: 1001;
         left: 0;
         top: 0;
         width: 100%;
@@ -89,16 +171,34 @@
         background: rgba(0, 0, 0, 0.7);
         justify-content: center;
         align-items: center;
+        animation: fadeInModal 0.4s ease;
+      }
+
+      @keyframes fadeInModal {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       .modal-content {
         background: #1e1e2e;
         padding: 30px;
-        border-radius: 16px;
+        border-radius: 20px;
         width: 350px;
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
         text-align: center;
         position: relative;
+        transform: scale(0.8);
+        animation: popIn 0.3s ease forwards;
+      }
+
+      @keyframes popIn {
+        to {
+          transform: scale(1);
+        }
       }
 
       .modal-content h2 {
@@ -114,34 +214,30 @@
         border: none;
         background: #333344;
         color: white;
+        transition: all 0.3s ease;
       }
 
       .modal-content input:focus {
         outline: 2px solid #8b5cf6;
-      }
-
-      .modal-content .options {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 0.9rem;
-        color: #bbb;
-        margin-bottom: 15px;
+        transform: scale(1.02);
       }
 
       .modal-content button {
         width: 100%;
         padding: 12px;
+        margin-top: 10px;
         background: linear-gradient(90deg, #8b5cf6, #d946ef);
         border: none;
         border-radius: 8px;
         color: white;
         font-weight: bold;
         cursor: pointer;
+        transition: all 0.3s ease;
       }
 
       .modal-content button:hover {
-        opacity: 0.85;
+        transform: scale(1.05);
+        opacity: 0.9;
       }
 
       .modal-content .register {
@@ -162,18 +258,11 @@
         font-size: 30px;
         color: white;
         cursor: pointer;
+        transition: transform 0.3s ease;
       }
 
-      /* About Section */
-      .about {
-        padding: 40px 20px;
-        background: #1a1a2e;
-        color: white;
-      }
-
-      .about h2,
-      .about h3 {
-        color: #c084fc;
+      .close-btn:hover {
+        transform: rotate(90deg);
       }
 
       /* Footer */
@@ -185,13 +274,14 @@
         font-size: 14px;
         margin-top: 20px;
         border-top: 1px solid #333;
+        animation: fadeIn 1.5s ease-in-out;
       }
 
       footer a {
         color: #c084fc;
         text-decoration: none;
         margin: 0 10px;
-        transition: color 0.3s ease;
+        transition: all 0.3s ease;
       }
 
       footer a:hover {
@@ -202,7 +292,12 @@
   <body>
     <!-- Navbar -->
     <header class="navbar">
-      <img src="logo.png" alt="SLISS Logo" class="logo" />
+      <img
+        src="logo.png"
+        alt="SLISS Logo"
+        class="logo"
+        style="width: 80px; height: auto"
+      />
       <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -244,9 +339,9 @@
         staff to adopt because it uses familiar spreadsheet and form tools.
         Real-Time Insights: Administrators get a clear, instant view of
         institutional operations. Efficient & Reliable: Automates key workflows,
-        reduces errors, and ensures smooth communication.
+        reduces errors, and ensures smooth communication
       </p>
-      <h3>How it work</h3>
+      <h3>How It Works</h3>
       <p>
         SLISS connects widely used cloud tools, lightweight scripts, and simple
         automation to create a low-cost ERP solution: Admission Management:
