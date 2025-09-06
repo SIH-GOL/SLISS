@@ -15,7 +15,20 @@
         background-color: #0b0c2a;
         color: #e5e7eb;
       }
-      header,
+
+      /* ✅ Logo style */
+      .logo {
+        width: 120px; /* Increased size */
+        height: auto;
+        transition: transform 0.3s ease, filter 0.3s ease;
+        cursor: pointer;
+      }
+
+      .logo:hover {
+        transform: scale(1.1); /* zoom effect */
+        filter: brightness(1.2); /* makes logo a bit brighter */
+      }
+
       footer {
         background-color: #161735;
       }
@@ -74,16 +87,16 @@
   </head>
   <body class="text-gray-200">
     <div class="min-h-screen flex flex-col">
-      <!-- Header -->
-      <header class="shadow-sm sticky top-0 z-50">
-        <nav
-          class="container mx-auto px-4 py-4 flex justify-between items-center"
+     <!-- Header -->
+       <header class="shadow-sm sticky top-0 z-50">
+       <nav
+       class="container mx-auto px-4 py-4 flex justify-between items-center"
         >
-          <div class="flex items-center space-x-2">
-            <img src="logo.png" alt="SLISS Logo" class="logo" style="width: 80px; height: auto;" />
-          </div>
-        </nav>
-      </header>
+        <div class="flex items-center space-x-2">
+        <img src="logo.png" alt="SLISS Logo" class="logo ml-[-20px]" />
+       </div>
+       </nav>
+        </header>
 
       <!-- Main -->
       <main class="container mx-auto p-6 flex-grow">
@@ -386,36 +399,36 @@
 
           <!-- Mental Health Support -->
           <div
-  class="icon-card flex flex-col justify-center items-center text-center space-y-3"
->
-  <div class="icon-gradient g10">
-    <!-- Mental Health Support Icon -->
-    <svg
-      class="w-10 h-10 text-white"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      stroke-width="2"
-    >
-      <!-- Head Outline -->
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M12 3a6 6 0 00-6 6v2a4 4 0 00-1 3l1 4h4l1 3h4v-3a5 5 0 003-5V9a6 6 0 00-6-6z"
-      ></path>
+            class="icon-card flex flex-col justify-center items-center text-center space-y-3"
+          >
+            <div class="icon-gradient g10">
+              <!-- Mental Health Support Icon -->
+              <svg
+                class="w-10 h-10 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <!-- Head Outline -->
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 3a6 6 0 00-6 6v2a4 4 0 00-1 3l1 4h4l1 3h4v-3a5 5 0 003-5V9a6 6 0 00-6-6z"
+                ></path>
 
-      <!-- Heart Inside Head -->
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M10.5 10.5l1.5 1.5 1.5-1.5a1.5 1.5 0 00-3 0z"
-      ></path>
-    </svg>
-  </div>
-  <span class="text-lg font-medium">Mental Health Support</span>
-</div>
-
+                <!-- Heart Inside Head -->
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M10.5 10.5l1.5 1.5 1.5-1.5a1.5 1.5 0 00-3 0z"
+                ></path>
+              </svg>
+            </div>
+            <span class="text-lg font-medium">Mental Health Support</span>
+          </div>
+        </div>
       </main>
 
       <!-- Footer -->
