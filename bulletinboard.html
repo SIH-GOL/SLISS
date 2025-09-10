@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLISS Student Notice Board</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81); /* Dark gradient */
+      color: white;
+      min-height: 100vh;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 45px;
+      height: auto;
+    }
+
+    .notice-card {
+      background: #1e293b;
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .notice-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body class="p-6">
+
+  <!-- Header / Navbar -->
+  <header class="flex justify-between items-center px-6 py-4 bg-[#0f172a]/80 backdrop-blur-lg rounded-2xl shadow-lg">
+    <div class="logo">
+      <img src="https://i.ibb.co/2NkW9H2/sliss-logo.png" alt="SLISS Logo"> <!-- Replace with your logo -->
+      <h1 class="text-2xl font-extrabold">SLISS</h1>
+    </div>
+  </header>
+
+  <!-- Title Section -->
+  <section class="text-center mt-10 mb-8">
+    <h1 class="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+      Bulltein Board
+    </h1>
+    <p class="text-gray-300 mt-2">Important announcements, events, and updates for students.</p>
+    <button id="toggleButton" class="mt-6 px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full shadow-lg hover:opacity-90 transition">
+      Show Notices
+    </button>
+  </section>
+
+  <!-- Notices Grid -->
+  <main id="notices-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto"></main>
+
+  <!-- JavaScript -->
+  <script>
+    const allNotices = [
+      {
+        title: "Annual Sports Day - Participation Form",
+        date: "October 26, 2025",
+        content: "All students are requested to fill out the form for the upcoming Annual Sports Day. The last date to submit is November 10, 2025.",
+        category: "Announcement"
+      },
+      {
+        title: "Mid-Term Exam Schedule",
+        date: "October 24, 2025",
+        content: "The detailed schedule for the mid-term examinations has been published. Please check your dashboard for individual timings and subjects.",
+        category: "Exam"
+      },
+      {
+        title: "Parent-Teacher Meeting",
+        date: "October 23, 2025",
+        content: "A Parent-Teacher Meeting will be held on November 15, 2025. Your presence is mandatory to discuss academic progress.",
+        category: "Meeting"
+      },
+      {
+        title: "Science Fair Project Submissions",
+        date: "October 20, 2025",
+        content: "The deadline for the Science Fair project submissions has been extended to November 5, 2025. Please upload your project details.",
+        category: "Events"
+      }
+    ];
+
+    function createNoticeCard(notice) {
+      let colorClass = "bg-blue-500";
+      let icon = "📢";
+
+      switch (notice.category) {
+        case "Exam": colorClass = "bg-red-500"; icon = "📝"; break;
+        case "Events": colorClass = "bg-green-500"; icon = "📅"; break;
+        case "Meeting": colorClass = "bg-purple-500"; icon = "🤝"; break;
+        default: colorClass = "bg-blue-500"; icon = "📢";
+      }
+
+      return `
+        <div class="notice-card p-6 relative">
+          <div class="absolute top-0 right-0 ${colorClass} text-white text-xs font-bold py-1 px-4 rounded-bl-xl">
+            ${icon} ${notice.category}
+          </div>
+          <h2 class="text-2xl font-bold mb-2">${notice.title}</h2>
+          <p class="text-sm text-gray-400 mb-4">${notice.date}</p>
+          <p class="text-gray-300 leading-relaxed">${notice.content}</p>
+        </div>
+      `;
+    }
+
+    function renderNotices(notices) {
+      const container = document.getElementById("notices-container");
+      container.innerHTML = "";
+
+      if (notices.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-1 md:col-span-2 text-center p-8 bg-[#1e293b] rounded-2xl shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-300">No updates available at the moment.</h2>
+            <p class="mt-2 text-gray-500">Please check back later for new announcements.</p>
+          </div>
+        `;
+      } else {
+        notices.forEach(notice => {
+          container.innerHTML += createNoticeCard(notice);
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleButton = document.getElementById("toggleButton");
+      renderNotices([]);
+
+      toggleButton.addEventListener("click", () => {
+        if (toggleButton.textContent === "Show Notices") {
+          renderNotices(allNotices);
+          toggleButton.textContent = "Clear Notices";
+        } else {
+          renderNotices([]);
+          toggleButton.textContent = "Show Notices";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
