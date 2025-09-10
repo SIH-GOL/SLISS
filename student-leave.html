@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leave Application</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen text-gray-100">
+  <div class="bg-gray-800 p-8 rounded-2xl shadow-lg w-full max-w-lg">
+    <h2 class="text-2xl font-bold mb-6 text-center text-purple-400">Student Leave Application</h2>
+    
+    <!-- Success Message (hidden by default) -->
+    <div id="successMsg" class="hidden bg-green-600 text-white p-3 rounded-lg mb-4 text-center">
+      ✅ Your application has been submitted successfully!
+    </div>
+
+    <form id="leaveForm" class="space-y-4">
+
+      <div>
+        <label class="block font-medium">Student Name</label>
+        <input type="text" name="student_name" class="w-full border border-gray-600 rounded-lg p-2 bg-gray-700 text-gray-100 focus:ring-2 focus:ring-purple-500" required>
+      </div>
+
+      <div>
+        <label class="block font-medium">Roll Number</label>
+        <input type="text" name="roll_number" class="w-full border border-gray-600 rounded-lg p-2 bg-gray-700 text-gray-100 focus:ring-2 focus:ring-purple-500" required>
+      </div>
+
+      <div>
+        <label class="block font-medium">Leave Type</label>
+        <select name="leave_type" class="w-full border border-gray-600 rounded-lg p-2 bg-gray-700 text-gray-100 focus:ring-2 focus:ring-purple-500">
+          <option value="Sick">Sick</option>
+          <option value="Personal">Personal</option>
+          <option value="Emergency">Emergency</option>
+        </select>
+      </div>
+
+      <div class="flex gap-2">
+        <div class="w-1/2">
+          <label class="block font-medium">From Date</label>
+          <input type="date" name="from_date" class="w-full border border-gray-600 rounded-lg p-2 bg-gray-700 text-gray-100 focus:ring-2 focus:ring-purple-500" required>
+        </div>
+        <div class="w-1/2">
+          <label class="block font-medium">To Date</label>
+          <input type="date" name="to_date" class="w-full border border-gray-600 rounded-lg p-2 bg-gray-700 text-gray-100 focus:ring-2 focus:ring-purple-500" required>
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-medium">Reason</label>
+        <textarea name="reason" rows="3" class="w-full border border-gray-600 rounded-lg p-2 bg-gray-700 text-gray-100 focus:ring-2 focus:ring-purple-500" required></textarea>
+      </div>
+
+      <div>
+        <label class="block font-medium">Upload Proof (Optional)</label>
+        <input type="file" name="proof" class="w-full border border-gray-600 rounded-lg p-2 bg-gray-700 text-gray-100 focus:ring-2 focus:ring-purple-500">
+      </div>
+
+      <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition">
+        Submit Application
+      </button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("leaveForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // stop real form submission
+      document.getElementById("successMsg").classList.remove("hidden"); // show message
+      this.reset(); // clear form
+    });
+  </script>
+</body>
+</html>
