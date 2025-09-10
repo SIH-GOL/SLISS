@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Feedback - SLISS</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body {
+        background: #0e0e1a;
+        color: white;
+        min-height: 100vh;
+        padding: 30px;
+      }
+      .card {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #141428;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 1s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      h1 {
+        font-size: 26px;
+        margin-bottom: 20px;
+        color: #c084fc;
+        text-align: center;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #bbb;
+      }
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #333344;
+        background: #1e1e2e;
+        color: white;
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .stars {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 20px;
+      }
+      .star {
+        font-size: 24px;
+        cursor: pointer;
+        transition: color 0.3s;
+        color: #555;
+      }
+      .star.selected,
+      .star.hovered {
+        color: #facc15;
+      }
+      .submit-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #8b5cf6, #d946ef);
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .submit-btn:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+      .success-message {
+        background: #10b981;
+        color: white;
+        padding: 12px;
+        border-radius: 10px;
+        margin-top: 15px;
+        display: none;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Teacher Feedback</h1>
+
+      <label for="teacher">Select Teacher</label>
+      <select id="teacher">
+        <option value="" disabled selected>Select a teacher</option>
+        <option>Ankit Kardam</option>
+        <option>Krishna Bihari Dubey</option>
+        <option>Laxman Singh</option>
+        <option>Prabhat Raghav</option>
+        <option>Priya Singh</option>
+        <option>Kaushal Gupta</option>
+      </select>
+
+      <div id="feedbackCategories"></div>
+
+      <label for="comments">Additional Comments</label>
+      <textarea
+        id="comments"
+        placeholder="Write your feedback here..."
+      ></textarea>
+
+      <button class="submit-btn" id="submitBtn">Submit Feedback</button>
+      <div class="success-message" id="successMessage">
+        Thank you! Your feedback has been submitted.
+      </div>
+    </div>
+
+    <script>
+      const categories = [
+        "Knowledge",
+        "Behaviour",
+        "Communication Skill",
+        "Nature",
+        "Punctuality",
+        "Helpfulness",
+        "Teaching Methods",
+      ];
+
+      const feedbackContainer = document.getElementById("feedbackCategories");
+      const teacherSelect = document.getElementById("teacher");
+      const successMessage = document.getElementById("successMessage");
+
+      // Ratings stored per teacher
+      const teacherRatings = {};
+
+      function renderStars() {
+        feedbackContainer.innerHTML = "";
+
+        categories.forEach((cat) => {
+          const label = document.createElement("label");
+          label.textContent = cat;
+          feedbackContainer.appendChild(label);
+
+          const div = document.createElement("div");
+          div.className = "stars";
+          div.dataset.category = cat;
+
+          const currentTeacher = teacherSelect.value;
+          const ratings = currentTeacher
+            ? teacherRatings[currentTeacher] || {}
+            : {};
+
+          for (let i = 1; i <= 5; i++) {
+            const star = document.createElement("span");
+            star.className = "star";
+            star.innerHTML = "&#9733;";
+            star.dataset.value = i;
+
+            star.addEventListener("mouseover", () => {
+              Array.from(div.children).forEach((s) =>
+                s.classList.remove("hovered")
+              );
+              for (let j = 0; j < i; j++)
+                div.children[j].classList.add("hovered");
+            });
+
+            star.addEventListener("mouseout", () => {
+              Array.from(div.children).forEach((s, idx) => {
+                s.classList.remove("hovered");
+                if (ratings[cat] && idx < ratings[cat])
+                  s.classList.add("selected");
+              });
+            });
+
+            star.addEventListener("click", () => {
+              if (!currentTeacher) return;
+              if (!teacherRatings[currentTeacher])
+                teacherRatings[currentTeacher] = {};
+              teacherRatings[currentTeacher][cat] = i;
+              Array.from(div.children).forEach((s, idx) =>
+                s.classList.toggle("selected", idx < i)
+              );
+            });
+
+            if (ratings[cat] && i <= ratings[cat]) {
+              star.classList.add("selected");
+            }
+
+            div.appendChild(star);
+          }
+
+          feedbackContainer.appendChild(div);
+        });
+      }
+
+      teacherSelect.addEventListener("change", renderStars);
+
+      document.getElementById("submitBtn").addEventListener("click", () => {
+        const teacher = teacherSelect.value;
+        const comments = document.getElementById("comments").value;
+
+        if (!teacher) {
+          alert("Please select a teacher.");
+          return;
+        }
+
+        const ratings = teacherRatings[teacher] || {};
+        const allFilled = categories.every((cat) => ratings[cat]);
+
+        if (!allFilled) {
+          alert("Please rate all categories before submitting.");
+          return;
+        }
+
+        console.log({ teacher, ratings, comments }); // send to backend
+
+        successMessage.style.display = "block";
+
+        // Reset form
+        teacherSelect.value = "";
+        document.getElementById("comments").value = "";
+        renderStars();
+      });
+
+      renderStars(); // initial render
+    </script>
+  </body>
+</html>
