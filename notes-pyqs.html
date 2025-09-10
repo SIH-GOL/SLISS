@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Portal</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            darkBg: "#0f172a",   // background
+            darkCard: "#1e293b", // card container
+            neonPink: "#ec4899",
+            neonPurple: "#8b5cf6"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  </style>
+</head>
+<body class="bg-darkBg font-sans antialiased text-gray-200">
+
+  <!-- Main Container -->
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-darkCard rounded-2xl shadow-xl w-full max-w-4xl overflow-hidden">
+      
+      <!-- Header -->
+      <header class="bg-gradient-to-r from-neonPurple to-neonPink text-white p-6 md:p-8 flex items-center space-x-4 rounded-t-2xl">
+        <svg class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14v5a2 2 0 002 2h4a2 2 0 002-2v-5M12 14L3 9M12 14V3" />
+        </svg>
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Student Portal</h1>
+      </header>
+
+      <!-- Navigation -->
+      <div class="bg-darkCard text-white p-4 flex flex-col md:flex-row items-center justify-between border-b border-gray-700">
+        <div class="flex space-x-4 mb-4 md:mb-0">
+          <button id="notes-nav-btn" class="px-4 py-2 rounded-full font-medium transition-colors duration-200 bg-neonPurple hover:bg-neonPink">
+            Notes
+          </button>
+          <button id="pyq-nav-btn" class="px-4 py-2 rounded-full font-medium transition-colors duration-200 bg-darkCard hover:bg-neonPink border border-gray-600">
+            PYQ
+          </button>
+        </div>
+        <div class="flex items-center w-full md:w-auto">
+          <label for="subject-select" class="font-medium text-gray-300 mr-2">Subject:</label>
+          <select id="subject-select" class="flex-1 p-2 rounded-lg border-gray-600 focus:border-neonPink focus:ring-neonPink bg-darkBg text-gray-200">
+            <option value="Sensor">Sensor</option>
+            <option value="DSTL">DSTL</option>
+            <option value="COA">COA</option>
+            <option value="UHV">UHV</option>
+            <option value="Python">Python</option>
+            <option value="DS">DS</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Notes Page -->
+      <main id="notes-page" class="p-6 md:p-8 bg-darkBg rounded-b-2xl">
+        <h2 class="text-2xl font-semibold text-neonPink mb-4 flex items-center space-x-2">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <span>Unit-wise Notes</span>
+        </h2>
+        <ul id="notes-list" class="space-y-4"></ul>
+      </main>
+
+      <!-- PYQ Page -->
+      <main id="pyq-page" class="p-6 md:p-8 bg-darkBg rounded-b-2xl hidden">
+        <h2 class="text-2xl font-semibold text-neonPink mb-4 flex items-center space-x-2">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+          <span>Previous Year Questions (PYQ)</span>
+        </h2>
+        <div class="mb-6">
+          <label for="year-select" class="block font-medium text-gray-400 mb-2">Select Year:</label>
+          <select id="year-select" class="w-full p-2 rounded-lg border-gray-600 focus:border-neonPink focus:ring-neonPink bg-darkCard text-gray-200">
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+          </select>
+        </div>
+        <ul id="pyq-list" class="space-y-4">
+          <li class="bg-darkCard p-4 rounded-lg border border-gray-700 hover:border-neonPink transition duration-300">
+            <a href="#" class="block text-neonPink font-semibold hover:text-white">Sample PYQ for DSTL (2023)</a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </div>
+
+  <!-- App Script -->
+  <script>
+    const subjectSelect = document.getElementById('subject-select');
+    const notesList = document.getElementById('notes-list');
+    const notesBtn = document.getElementById('notes-nav-btn');
+    const pyqBtn = document.getElementById('pyq-nav-btn');
+    const notesPage = document.getElementById('notes-page');
+    const pyqPage = document.getElementById('pyq-page');
+
+    // Unit-wise notes data
+    const notesData = {
+      "Sensor": ["Unit 1: Sensor Basics", "Unit 2: Sensor Types", "Unit 3: Sensor Circuits", "Unit 4: Applications", "Unit 5: Advanced Topics"],
+      "DSTL": ["Unit 1: Number Systems", "Unit 2: Logic Gates", "Unit 3: K-Maps", "Unit 4: Flip-Flops", "Unit 5: Counters & Registers"],
+      "COA": ["Unit 1: Basics of COA", "Unit 2: Instruction Sets", "Unit 3: Memory Organization", "Unit 4: I/O Organization", "Unit 5: Pipelining & Parallelism"],
+      "UHV": ["Unit 1: Human Values", "Unit 2: Harmony in Self", "Unit 3: Harmony in Family", "Unit 4: Harmony in Society", "Unit 5: Harmony in Nature"],
+      "Python": ["Unit 1: Basics of Python", "Unit 2: Control Structures", "Unit 3: Functions & Modules", "Unit 4: OOP in Python", "Unit 5: File Handling & Libraries"],
+      "DS": ["Unit 1: Arrays & Linked Lists", "Unit 2: Stacks & Queues", "Unit 3: Trees", "Unit 4: Graphs", "Unit 5: Sorting & Searching"]
+    };
+
+    // Render unit-wise notes
+    function renderNotes(subject) {
+      notesList.innerHTML = "";
+      notesData[subject].forEach((unit, i) => {
+        const li = document.createElement("li");
+        li.className = "bg-darkCard p-4 rounded-lg border border-gray-700 hover:border-neonPink transition duration-300";
+        li.innerHTML = `<a href="#" class="block text-neonPink font-semibold hover:text-white">${unit} - Download</a>`;
+        notesList.appendChild(li);
+      });
+    }
+
+    subjectSelect.addEventListener("change", () => {
+      renderNotes(subjectSelect.value);
+    });
+
+    // Navigation
+    notesBtn.addEventListener("click", () => {
+      notesPage.classList.remove("hidden");
+      pyqPage.classList.add("hidden");
+      notesBtn.classList.add("bg-neonPurple");
+      pyqBtn.classList.remove("bg-neonPurple");
+    });
+
+    pyqBtn.addEventListener("click", () => {
+      pyqPage.classList.remove("hidden");
+      notesPage.classList.add("hidden");
+      pyqBtn.classList.add("bg-neonPurple");
+      notesBtn.classList.remove("bg-neonPurple");
+    });
+
+    // Default load
+    renderNotes("Sensor");
+  </script>
+</body>
+</html>
