@@ -17,53 +17,7 @@
         background: #0e0e1a;
         color: white;
         line-height: 1.6;
-        display: flex;
         min-height: 100vh;
-      }
-
-      /* Sidebar */
-      .sidebar {
-        width: 220px;
-        background: #1e1e2e;
-        border-right: 1px solid #333344;
-        padding: 20px;
-      }
-
-      .sidebar h2 {
-        font-size: 18px;
-        margin-bottom: 20px;
-        color: #c084fc;
-      }
-
-      .sidebar ul {
-        list-style: none;
-      }
-
-      .sidebar ul li {
-        margin-bottom: 15px;
-      }
-
-      .sidebar ul li a {
-        text-decoration: none;
-        color: #bbb;
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-      }
-
-      .sidebar ul li a:hover,
-      .sidebar ul li a.active {
-        background: linear-gradient(90deg, #8b5cf6, #d946ef);
-        color: white;
-      }
-
-      /* Main Content */
-      .main {
-        flex: 1;
         padding: 30px;
       }
 
@@ -73,6 +27,8 @@
         padding: 25px;
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
         animation: fadeIn 1s ease-in-out;
+        max-width: 900px;
+        margin: 0 auto;
       }
 
       @keyframes fadeIn {
@@ -184,39 +140,27 @@
     </style>
   </head>
   <body>
-    <div class="sidebar">
-      <h2>Dashboard</h2>
-      <ul>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Payments</a></li>
-        <li><a href="#" class="active">Hostel</a></li>
-        <li><a href="#">Library</a></li>
-      </ul>
-    </div>
-
-    <div class="main">
-      <div class="card">
-        <h1>Hostel Management</h1>
-        <div class="alert">
-          <strong>No Room Allotted</strong><br />
-          You currently do not have a hostel room allotted. Please select one
-          below.
-        </div>
-        <div id="totalSeats" class="note"></div>
-
-        <div class="toggle-buttons">
-          <button id="boysBtn" class="toggle-btn active">Boys Hostel</button>
-          <button id="girlsBtn" class="toggle-btn">Girls Hostel</button>
-        </div>
-
-        <h3>Hostel Application</h3>
-        <p class="note">
-          (Single, Double, Triple rooms available in AC & Non-AC)
-        </p>
-
-        <div class="rooms" id="roomList"></div>
-        <button class="book-btn" id="bookBtn">Book Selected Room</button>
+    <div class="card">
+      <h1>Hostel Management</h1>
+      <div class="alert">
+        <strong>No Room Allotted</strong><br />
+        You currently do not have a hostel room allotted. Please select one
+        below.
       </div>
+      <div id="totalSeats" class="note"></div>
+
+      <div class="toggle-buttons">
+        <button id="boysBtn" class="toggle-btn active">Boys Hostel</button>
+        <button id="girlsBtn" class="toggle-btn">Girls Hostel</button>
+      </div>
+
+      <h3>Hostel Application</h3>
+      <p class="note">
+        (Single, Double, Triple rooms available in AC & Non-AC)
+      </p>
+
+      <div class="rooms" id="roomList"></div>
+      <button class="book-btn" id="bookBtn">Book Selected Room</button>
     </div>
 
     <script>
