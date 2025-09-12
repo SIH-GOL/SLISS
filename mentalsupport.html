@@ -17,17 +17,16 @@
     }
 
     .logo {
-        width: 120px; /* Increased size */
-        height: auto;
-        transition: transform 0.3s ease, filter 0.3s ease;
-        cursor: pointer;
-      }
+      width: 120px;
+      height: auto;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      cursor: pointer;
+    }
 
-      .logo:hover {
-        transform: scale(1.1); /* zoom effect */
-        filter: brightness(1.2); /* makes logo a bit brighter */
-      }
-
+    .logo:hover {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
 
     /* 🔹 Navbar */
     header {
@@ -37,12 +36,6 @@
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    }
-
-    header h1 {
-      color: #8ab4f8;
-      font-size: 20px;
-      font-weight: 600;
     }
 
     nav a {
@@ -97,6 +90,16 @@
       border: 1px solid #ff6b6b;
     }
 
+    .emergency a {
+      color: #ff6b6b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .emergency a:hover {
+      text-decoration: underline;
+    }
+
     textarea {
       width: 100%;
       min-height: 180px;
@@ -140,23 +143,23 @@
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Success message */
+    .success-message {
+      display: none;
+      margin-top: 15px;
+      color: #4caf50;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
 
   <!-- 🔹 Navbar -->
   <header>
-    <img
-        src="logo.png"
-        alt="SLISS Logo"
-        class="logo"
-        style="width: 80px; height: auto"
-      />
+    <img src="logo.png" alt="SLISS Logo" class="logo" style="width: 80px; height: auto"/>
     <nav>
-      <a href="submit.html">Dashboard</a>
-      <a href="officialdetails.html">Official Details</a>
-      <a href="mentalhealth.html" class="active">Mental Health</a>
-      <a href="about.html">About</a>
+      <a href="submit.html">Home</a>
     </nav>
   </header>
 
@@ -164,13 +167,27 @@
   <div class="container">
     <h2>Mental Health Support</h2>
     <p class="note">Submit your complaint anonymously. Your identity will not be recorded.</p>
-    <p class="emergency">🚨 For urgent help, contact Us: <br>📞 <strong>+91-XXXX-XXX-XXXX</strong></p>
+    
+    <!-- Emergency Contact with Click-to-Call -->
+    <p class="emergency">
+      🚨 For urgent help, contact Us: <br>
+      📞 <a href="tel:+916390754559">+91-6390754559</a>
+    </p>
 
-    <form action="/submit-complaint" method="POST">
+    <form id="complaintForm">
       <textarea name="complaint" placeholder="Write your complaint or concern here..." required></textarea>
       <button type="submit">Submit Anonymously</button>
+      <p class="success-message" id="successMsg">✅ Submitted Successfully!</p>
     </form>
   </div>
+
+  <script>
+    document.getElementById("complaintForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // stop page reload
+      document.getElementById("successMsg").style.display = "block"; // show success message
+      this.reset(); // clear the textarea
+    });
+  </script>
 
 </body>
 </html>
