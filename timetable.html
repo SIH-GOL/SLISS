@@ -40,7 +40,7 @@
 
         .header-section {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 15px 40px;
             background: var(--header-bg-color);
@@ -52,7 +52,48 @@
 
         .header-section h1 {
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            text-align: center; 
+            flex-grow: 1;
+            text-transform: uppercase; /* Changed to uppercase */
+            color: #c084fc; /* Changed to purple color */
+        }
+        
+        /* New Logo & Text CSS */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .logo-container img {
+            width: 100px;
+            height: auto;
+        }
+
+        /* Removed .logo-container span to remove the "SLISS" text */
+        
+        .home-button {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+            padding: 12px 24px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: absolute;
+            right: 40px; 
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .home-button:hover {
+            background: #8b5cf6;
+            color: white;
+            transform: scale(1.05) translateY(-50%);
         }
 
         .container {
@@ -216,7 +257,11 @@
 <body>
 
     <header class="header-section">
-        <h1>Timetable</h1>
+        <div class="logo-container">
+            <img src="logo.png" alt="SLISS Logo" />
+            </div>
+        
+        <h1>TIMETABLE</h1> <a href="submit.html" class="home-button">Home</a>
     </header>
 
     <div class="container">
@@ -237,7 +282,6 @@
                     <button id="fri-btn">F</button>
                     <button id="sat-btn">Sa</button>
                 </div>
-                <!-- Title bar ABOVE subjects -->
                 <h3 id="daily-title"></h3>
                 <div id="daily-schedule-container" class="timetable-container"></div>
             </div>
