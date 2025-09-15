@@ -4,14 +4,50 @@
   <meta charset="UTF-8" />
   <title>Official Details</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Navbar from index.html */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: #1e1e2e;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar .logo {
+      width: 150px;
+      transition: transform 0.3s ease;
+    }
+    .navbar .logo:hover {
+      transform: scale(1.1);
+    }
+    .nav-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .nav-links a:hover {
+      background: #8b5cf6;
+      color: white;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body class="bg-[#0b0c2a] text-gray-200 font-inter min-h-screen flex flex-col">
 
   <!-- 🔹 Navbar -->
-  <header class="bg-[#1e1e2e] shadow-md px-6 py-4 flex justify-between items-center">
+  <header class="navbar">
     <img src="logo.png" alt="SLISS Logo" class="logo" style="width: 80px; height: auto;" />
-    <nav class="space-x-6">
-      <a href="submit.html" class="hover:text-purple-400">Home</a>
+    <nav class="nav-links">
+      <a href="submit.html">Home</a>
     </nav>
   </header>
 
@@ -19,10 +55,8 @@
   <main class="flex-1 flex items-center justify-center p-6">
     <div class="bg-[#1f213f] p-8 rounded-xl shadow-lg w-[950px]">
 
-      <!-- 🔹 Personal Info (Top Section) -->
+      <!-- 🔹 Personal Info -->
       <div class="flex items-center justify-between border-b border-gray-600 pb-6 mb-6">
-        
-        <!-- Left Info -->
         <div class="space-y-2">
           <h2 class="text-2xl font-bold text-purple-400">Student Profile</h2>
           <p><strong>Name:</strong> Azam Khan</p>
@@ -44,10 +78,9 @@
         </div>
       </div>
 
-      <!-- 🔹 Academic / Official Info (Bottom Section) -->
+      <!-- 🔹 Academic / Official Info -->
       <div>
         <h2 class="text-xl font-semibold mb-4 text-purple-400">Academic & Official Details</h2>
-        
         <div class="grid grid-cols-2 gap-6">
           <p><strong>Admission No:</strong> 2024CS349</p>
           <p><strong>University Roll No:</strong> 2402900100182</p>
@@ -63,12 +96,9 @@
           <p><strong>Hostel:</strong> No</p>
           <p><strong>Mess:</strong> No</p>
           <p><strong>Transport:</strong> No</p>
-          
         </div>
       </div>
-
     </div>
   </main>
-
 </body>
 </html>
