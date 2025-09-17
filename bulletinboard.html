@@ -6,23 +6,91 @@
   <title>SLISS Student Notice Board</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81); /* Dark gradient */
-      color: white;
-      min-height: 100vh;
-    }
+     body {
+        font-family: "Inter", sans-serif;
+        background-color: #0b0c2a;
+        color: #e5e7eb;
+      }
+      /* ✅ Logo style */
+.logo {
+  height: 50px; /* fixed height */
+  width: auto;  /* keep natural aspect ratio */
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+.logo:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+    /* ================= NAVBAR ================= */
+      :root {
+        --nav-h: 70px;
+        --accent1: #8b5cf6; /* violet */
+        --accent2: #d946ef; /* pink */
+      }
 
-    .logo img {
-      width: 45px;
-      height: auto;
-    }
+      .navbar {
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        background: rgba(3, 8, 23, 0.6);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand-text {
+        font-weight: 600;
+        color: #fff;
+        margin-left: 6px;
+        letter-spacing: 1px;
+        font-size: 20px;
+        opacity: 0.95;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav-links a {
+        display: inline-block;
+        padding: 8px 28px;
+        border-radius: 30px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 600;
+        font-size: 15px;
+        background: linear-gradient(90deg, var(--accent1), var(--accent2));
+        box-shadow: 0 6px 18px rgba(99, 102, 241, 0.15);
+        transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s;
+        letter-spacing: 1px;
+      }
+
+      .nav-links a:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.28);
+        filter: brightness(1.05);
+      }
+
+      .nav-links a.active {
+        filter: brightness(1.2);
+        box-shadow: 0 10px 35px rgba(139, 92, 246, 0.45);
+      }
+    
 
     .notice-card {
       background: #1e293b;
@@ -37,19 +105,25 @@
     }
   </style>
 </head>
-<body class="p-6">
 
-  <!-- Header / Navbar -->
-  <header class="flex justify-between items-center px-6 py-4 bg-[#0f172a]/80 backdrop-blur-lg rounded-2xl shadow-lg">
-    <div class="logo">
-      <img src="logo.png" alt="SLISS Logo" class="logo" style="width: 80px; height: auto;" />
-    </div>
-  </header>
+  <body class="text-gray-200">
+    <div class="min-h-screen flex flex-col">
+ 
+       <header class="navbar">
+        <div class="nav-left">
+          <img src="logo.png" alt="SLISS Logo" class="logo" />
+          <span class="brand-text">SLISS</span>
+        </div>
+        <nav class="nav-links">
+          <a href="submit.html" class="active">Home</a>
+          <a href="about.html">About</a>
+        </nav>
+      </header>
 
   <!-- Title Section -->
   <section class="text-center mt-10 mb-8">
     <h1 class="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-      Bulltein Board
+      Bulletin Board
     </h1>
     <p class="text-gray-300 mt-2">Important announcements, events, and updates for students.</p>
     <button id="toggleButton" class="mt-6 px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full shadow-lg hover:opacity-90 transition">
@@ -145,5 +219,7 @@
       });
     });
   </script>
-</body>
+  </div>
+  </body>
 </html>
+
