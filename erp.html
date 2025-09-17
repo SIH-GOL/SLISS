@@ -30,44 +30,76 @@
         overflow-x: hidden;
       }
 
-      /* 🔥 Navbar */
-      .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 40px;
-        background: #1e1e2e;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-      }
+     /* ================= NAVBAR ================= */
+.navbar {
+  height: var(--nav-h, 70px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(3, 8, 23, 0.6);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-      .navbar .logo {
-        width: 150px;
-        transition: transform 0.3s ease;
-      }
+/* Left side (Logo + Brand Name) */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-      .navbar .logo:hover {
-        transform: scale(1.1);
-      }
+.navbar .logo {
+  width: 56px;
+  height: auto;
+  display: block;
+}
 
-      .nav-links a {
-        margin-left: 20px;
-        text-decoration: none;
-        color: white;
-        font-weight: 600;
-        font-size: 18px;
-        padding: 10px 18px;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-      }
+.brand-text {
+  font-weight: 600;
+  color: #fff;
+  margin-left: 6px;
+  letter-spacing: 1px;
+  font-size: 20px;
+  opacity: 0.95;
+}
 
-      .nav-links a:hover {
-        background: #8b5cf6;
-        color: white;
-        transform: scale(1.05);
-      }
+/* Right side (Links) */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-links a {
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  background: linear-gradient(90deg, var(--accent1, #8b5cf6), var(--accent2, #d946ef));
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.15);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s;
+  letter-spacing: 1px;
+}
+
+.nav-links a:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.28);
+  filter: brightness(1.05);
+}
+
+/* Active Link Style */
+.nav-links a.active {
+  filter: brightness(1.2);
+  box-shadow: 0 10px 35px rgba(139, 92, 246, 0.45);
+}
+
 
       /* 🔥 Form Container */
       .tab-content {
@@ -169,20 +201,17 @@
   </head>
 
   <body>
-    <!-- Navbar -->
-    <header class="navbar">
-      <img
-        src="logo.png"
-        alt="SLISS Logo"
-        class="logo"
-        style="width: 80px; height: auto"
-      />
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-      </nav>
-    </header>
-
+    
+<header class="navbar">
+        <div class="nav-left">
+          <img src="logo.png" alt="SLISS Logo" class="logo" />
+          <span class="brand-text">SLISS</span>
+        </div>
+        <nav class="nav-links">
+          <a href="index.html" class="active">Home</a>
+          <a href="about.html">About</a>
+        </nav>
+      </header>
     <!-- ERP Form -->
     <div class="tab-content">
       <div class="outer-container">
