@@ -7,71 +7,100 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #0d0d1a;
-      color: #ffffff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+        font-family: "Inter", sans-serif;
+        background-color: #0b0c2a;
+        color: #e5e7eb;
+      }
+      /* ✅ Logo style */
+.logo {
+  height: 50px; /* fixed height */
+  width: auto;  /* keep natural aspect ratio */
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
 
-    .logo {
-      width: 120px;
-      height: auto;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      cursor: pointer;
-    }
+.logo:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
 
-    .logo:hover {
-      transform: scale(1.1);
-      filter: brightness(1.2);
-    }
+      
+/* ================= NAVBAR ================= */
+      :root {
+        --nav-h: 70px;
+        --accent1: #8b5cf6; /* violet */
+        --accent2: #d946ef; /* pink */
+      }
 
-    /* 🔹 Navbar */
-    header {
-      background: #1e1e2e;
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    }
+      .navbar {
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        background: rgba(3, 8, 23, 0.6);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
 
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      transition: 0.3s;
-    }
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
 
-    nav a:hover {
-      color: #8ab4f8;
-    }
+      .brand-text {
+        font-weight: 600;
+        color: #fff;
+        margin-left: 6px;
+        letter-spacing: 1px;
+        font-size: 20px;
+        opacity: 0.95;
+      }
 
-    nav a.active {
-      color: #8ab4f8;
-      font-weight: 600;
-    }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
 
-    /* 🔹 Container */
-    .container {
-      background-color: #1a1a2e;
-      padding: 30px;
-      border-radius: 15px;
-      width: 420px;
-      margin: auto;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-      text-align: center;
-      animation: fadeIn 0.8s ease-in-out;
-    }
+      .nav-links a {
+        display: inline-block;
+        padding: 8px 28px;
+        border-radius: 30px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 600;
+        font-size: 15px;
+        background: linear-gradient(90deg, var(--accent1), var(--accent2));
+        box-shadow: 0 6px 18px rgba(99, 102, 241, 0.15);
+        transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s;
+        letter-spacing: 1px;
+      }
 
-    h2 {
-      margin-bottom: 10px;
-      color: #8ab4f8;
-      font-weight: 600;
-    }
+      .nav-links a:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.28);
+        filter: brightness(1.05);
+      }
+
+      .nav-links a.active {
+        filter: brightness(1.2);
+        box-shadow: 0 10px 35px rgba(139, 92, 246, 0.45);
+      }
+      footer {
+        background-color: #161735;
+      }
+/* ✅ Center & resize main container */
+.container {
+  max-width: 1000px;   /* Reduced width */
+  margin: 0 auto;      /* Centers the container */
+  padding: 20px;       /* Keeps spacing inside */
+}
 
     .note {
       font-size: 14px;
@@ -156,12 +185,19 @@
 <body>
 
   <!-- 🔹 Navbar -->
-  <header>
-    <img src="logo.png" alt="SLISS Logo" class="logo" style="width: 80px; height: auto"/>
-    <nav>
-      <a href="submit.html">Home</a>
+  
+
+ <!-- 🔥 Fixed Navbar -->
+  <header class="navbar">
+    <div class="nav-left">
+      <img src="logo.png" alt="SLISS Logo" class="logo" />
+      <span class="brand-text">SLISS</span>
+    </div>
+    <nav class="nav-links">
+      <a href="submit.html" class="active">Home</a>
+      <a href="about.html">About</a>
     </nav>
-  </header>
+  </header> 
 
   <!-- 🔹 Complaint Form -->
   <div class="container">
@@ -171,7 +207,7 @@
     <!-- Emergency Contact with Click-to-Call -->
     <p class="emergency">
       🚨 For urgent help, contact Us: <br>
-      📞 <a href="tel:+916390754559">+91-6390754559</a>
+      📞 <a href="tel:+916390754559">+91-63********</a>
     </p>
 
     <form id="complaintForm">
