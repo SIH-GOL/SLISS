@@ -5,57 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library Seat & Book Management - SLISS</title>
     <style>
-      /* Reset */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+       body {
+        font-family: "Inter", sans-serif;
+        background-color: #0b0c2a;
+        color: #e5e7eb;
+      }
+      /* ✅ Logo style */
+.logo {
+  height: 50px; /* fixed height */
+  width: auto;  /* keep natural aspect ratio */
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+    /* ================= NAVBAR ================= */
+      :root {
+        --nav-h: 70px;
+        --accent1: #8b5cf6; /* violet */
+        --accent2: #d946ef; /* pink */
       }
 
-      body {
-        background: #0e0e1a;
-        color: white;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-
-      /* Navbar */
       .navbar {
-        width: 100%;
-        background: #1e1e2e;
-        padding: 15px 25px;
+        height: var(--nav-h);
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid #333344;
+        justify-content: space-between;
+        padding: 0 40px;
+        background: rgba(3, 8, 23, 0.6);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         position: sticky;
         top: 0;
-        z-index: 100;
+        z-index: 1000;
       }
 
-      .navbar h2 {
-        font-size: 20px;
-        color: #c084fc;
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand-text {
         font-weight: 600;
-      }
-
-      .home-btn {
-        background: #000;
         color: #fff;
-        padding: 8px 18px;
-        border-radius: 9999px;
+        margin-left: 6px;
+        letter-spacing: 1px;
+        font-size: 20px;
+        opacity: 0.95;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav-links a {
+        display: inline-block;
+        padding: 8px 28px;
+        border-radius: 30px;
         text-decoration: none;
+        color: #fff;
         font-weight: 600;
-        transition: all 0.3s ease;
+        font-size: 15px;
+        background: linear-gradient(90deg, var(--accent1), var(--accent2));
+        box-shadow: 0 6px 18px rgba(99, 102, 241, 0.15);
+        transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s;
+        letter-spacing: 1px;
       }
 
-      .home-btn:hover {
-        background: #ec4899;
-        transform: scale(1.05);
+      .nav-links a:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.28);
+        filter: brightness(1.05);
       }
 
+      .nav-links a.active {
+        filter: brightness(1.2);
+        box-shadow: 0 10px 35px rgba(139, 92, 246, 0.45);
+      }
       /* Main Content */
       .content {
         width: 100%;
@@ -152,11 +185,17 @@
     </style>
   </head>
   <body>
-    <!-- Navbar -->
-    <div class="navbar">
-       <img src="logo.png" alt="SLISS Logo" class="logo" style="width: 80px; height: auto;" />
-      <a href="submit.html" class="home-btn">Home</a>
-    </div>
+    <!-- 🔹 Header -->
+    <header class="navbar">
+      <div class="nav-left">
+        <img src="logo.png" alt="SLISS Logo" class="logo" />
+        <span class="brand-text">SLISS</span>
+      </div>
+      <nav class="nav-links">
+        <a href="submit.html" class="active">Home</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
 
     <!-- Content -->
     <div class="content">
