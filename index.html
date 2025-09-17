@@ -1,406 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SLISS - Welcome</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      /* Reset */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SLISS - Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --nav-h:56px;
+      --accent1: #6378ff;
+      --accent2: #7b5cff;
+      --grad1: #4c1d95;
+      --grad2: #7e22ce;
+      --grad3: #a855f7;
+    }
 
-      body {
-        background: #0e0e1a;
-        color: white;
-        line-height: 1.6;
-        overflow-x: hidden;
-      }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:"Poppins",sans-serif}
 
-      /* Navbar */
-      .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 40px;
-        background: #1e1e2e;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-      }
+    body{
+      background: linear-gradient(180deg,#0f172a 0%, #2a0b3d 45%, #7b2bb8 100%);
+      color:#fff;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
 
-      .navbar .logo {
-        width: 150px;
-        transition: transform 0.3s ease;
-      }
+   
+    /* NAVBAR */
+    .navbar{
+      height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 40px;
+      background: rgba(3,8,23,0.6);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      position:sticky;
+      top:0;
+      z-index:50;
+    }
+    .nav-left{display:flex;align-items:center;gap:12px}
+    .navbar .logo{width:56px;height:auto;display:block}
+    .brand-text{
+      font-weight:600;
+      color:#fff;
+      margin-left:6px;
+      letter-spacing:1px;
+      font-size:20px;
+      opacity:0.95;
+    }
 
-      .navbar .logo:hover {
-        transform: scale(1.1);
-      }
+    .nav-links{display:flex;align-items:center;gap:12px}
+    .nav-links a{
+      display:inline-block;
+      padding:8px 28px;
+      border-radius:30px;
+      text-decoration:none;
+      color:#fff;
+      font-weight:600;
+      font-size:15px;
+      background: linear-gradient(90deg,var(--accent1),var(--accent2));
+      box-shadow: 0 6px 18px rgba(99,102,241,0.15);
+      transition: transform .28s ease, box-shadow .28s ease, filter .28s;
+      letter-spacing:1px;
+    }
+    .nav-links a:hover{
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 30px rgba(99,102,241,0.28);
+      filter:brightness(1.05);
+    }
 
-      .nav-links a {
-        margin-left: 20px;
-        text-decoration: none;
-        color: white;
-        font-weight: 600;
-        font-size: 18px;
-        padding: 10px 18px;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-      }
+    /* HERO SPLIT */
+    .hero{
+      display:flex;
+      gap:24px;
+      align-items:stretch;
+      min-height: calc(100vh - var(--nav-h) - 6px);
+      padding: 28px 36px;
+    }
 
-      .nav-links a:hover {
-        background: #8b5cf6;
-        color: white;
-        transform: scale(1.05);
-      }
+    /* left column (text) */
+    .hero-left{
+      flex:0 0 58%; /* left column width */
+      display:flex;
+      flex-direction:column;
+      justify-content:center; /* vertical centering */
+      padding: 40px 48px;
+      align-items:center;     /* center horizontally inside left column */
+      text-align:center;
+    }
 
-      /* Hero Section */
-      .hero {
-        text-align: center;
-        padding: 100px 20px;
-        background: linear-gradient(135deg, #1a1a3a, #3b1d64, #8b5cf6);
-        color: white;
-        animation: fadeIn 1.2s ease-in-out;
-      }
+    .hero-left .hero-logo{
+      width:220px; /* larger logo above text */
+      max-width:60%;
+      margin-bottom:18px;
+      transition: transform .6s ease;
+      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.45));
+      animation: bounce 3s infinite ease-in-out;
+    }
+    .hero-left .hero-logo:hover{ transform: translateY(-6px); }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+    h1.big-title{
+      font-size:50px;
+      line-height:0.95;
+      margin-bottom:18px;
+      font-weight:700;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      text-shadow: 0 12px 30px rgba(0,0,0,0.45);
+      /* optional vintage look like screenshot */
+      font-family: "Poppins", sans-serif;
+    }
 
-      .hero .hero-logo {
-        width: 200px;
-        margin-bottom: 20px;
-        animation: bounce 3s infinite ease-in-out;
-      }
+    .hero-left .lead-quote{
+      color: rgba(255,255,255,0.92);
+      max-width:760px;
+      margin-bottom:36px;
+      font-size:18px;
+      opacity:0.95;
+    }
 
-      @keyframes bounce {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
+    .cta-row{ display:flex; width:100%; justify-content:center; }
+    .btn-primary{
+      display:inline-block;
+      padding:18px 56px;
+      border-radius:999px;
+      background: linear-gradient(90deg,#9fc4ff66, #d7b3ff66);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #fff;
+      font-weight:600;
+      font-size:22px;
+      letter-spacing:2px;
+      cursor:pointer;
+      box-shadow: 0 18px 40px rgba(139,92,246,0.16), inset 0 -6px 18px rgba(255,255,255,0.02);
+      transition: transform .22s ease, box-shadow .22s ease, opacity .22s;
+    }
+    .btn-primary:hover{
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 26px 60px rgba(139,92,246,0.22);
+      opacity:0.98;
+    }
 
-      .hero h1 {
-        font-size: 40px;
-        margin-bottom: 15px;
-        letter-spacing: 1.5px;
-      }
+    /* right column (image) */
+    .hero-right{
+      flex:0 0 42%;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      justify-content:flex-end;
+      padding-bottom:20px;
+      /* allow right column to visually extend above/below */
+    }
+    .hero-right img{
+      height: calc(100vh - var(--nav-h) - 60px);
+      min-height: 520px;
+      width:auto;
+      object-fit:cover;
+      object-position: right bottom;
+      transform: translateX(40px); /* nudge to right so left area is cropped like your screenshot */
+      filter: drop-shadow(0 40px 80px rgba(0,0,0,0.55));
+      transition: transform .6s ease;
+      max-width: none;
+    }
+    .hero-right img:hover{ transform: translateX(24px) scale(1.01); }
 
-      .hero p {
-        font-size: 18px;
-        margin-bottom: 30px;
-        color: #ddd;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-      }
+    /* about section */
+    .about {
+  padding: 60px 20px;
+  background: #0e0e1a; /* same background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
 
-      .btn {
-        font-size: 20px;
-        padding: 14px 30px;
-        border-radius: 50px;
-        border: none;
-        cursor: pointer;
-        background: linear-gradient(90deg, #8b5cf6, #d946ef);
-        color: white;
-        font-weight: bold;
-        transition: all 0.3s ease;
-      }
+.content-section {
+  background: #1e1e2e; /* dark violet container */
+  padding: 40px 50px;
+  border-radius: 12px;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
 
-      .btn:hover {
-        transform: scale(1.1);
-        opacity: 0.9;
-      }
+.content-section h2 {
+  color: #c084fc; /* violet heading */
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 700;
+}
 
-      /* About Section */
-      .about {
-        padding: 60px 20px;
-        background: #141428;
-        text-align: center;
-        animation: fadeInUp 1.5s ease;
-      }
+.content-section p {
+  color: #ddd;
+  font-size: 16px;
+  line-height: 1.7;
+}
 
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(40px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+    /* footer */
+    footer{ padding:26px; text-align:center; color:#cfcfcf; font-size:14px; }
 
-      .about h2,
-      .about h3 {
-        color: #c084fc;
-        margin-bottom: 20px;
-      }
+    /* responsive */
+    @media (max-width:1100px){
+      .hero{ padding:22px 20px; gap:12px; }
+      .hero-left{ flex: 1 1 55%; padding:28px 20px; }
+      .hero-right{ flex: 1 1 45%; }
+      .hero-left .hero-logo{ width:170px }
+      h1.big-title{ font-size:56px }
+      .hero-right img{ height: calc(80vh - var(--nav-h)); min-height:420px; transform: translateX(12px); }
+    }
+    @media (max-width:820px){
+      .nav-links{ gap:8px }
+      .nav-links a{ padding:8px 16px; font-size:14px }
+      .hero{ flex-direction:column; min-height: auto; padding:18px 18px 60px; }
+      .hero-left{ order:1; align-items:center; text-align:center; padding:22px 12px; }
+      .hero-right{ order:2; width:100%; padding:10px; align-items:center; justify-content:center; }
+      .hero-right img{ height:380px; width:88%; transform:none; object-position:center; }
+      h1.big-title{ font-size:34px; }
+      .hero-left .hero-logo{ width:140px; margin-bottom:12px; }
+      .btn-primary{ padding:14px 40px; font-size:18px }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-strip"></div>
 
-      .about p {
-        max-width: 800px;
-        margin: 0 auto 30px auto;
-        color: #ddd;
-      }
-
-      /* Login Modal */
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 1001;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        justify-content: center;
-        align-items: center;
-        animation: fadeInModal 0.4s ease;
-      }
-
-      @keyframes fadeInModal {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      .modal-content {
-        background: #1e1e2e;
-        padding: 30px;
-        border-radius: 20px;
-        width: 350px;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-        text-align: center;
-        position: relative;
-        transform: scale(0.8);
-        animation: popIn 0.3s ease forwards;
-      }
-
-      @keyframes popIn {
-        to {
-          transform: scale(1);
-        }
-      }
-
-      .modal-content h2 {
-        margin-bottom: 20px;
-        color: white;
-      }
-
-      .modal-content input {
-        width: 100%;
-        padding: 12px;
-        margin: 8px 0;
-        border-radius: 8px;
-        border: none;
-        background: #333344;
-        color: white;
-        transition: all 0.3s ease;
-      }
-
-      .modal-content input:focus {
-        outline: 2px solid #8b5cf6;
-        transform: scale(1.02);
-      }
-
-      .modal-content button {
-        width: 100%;
-        padding: 12px;
-        margin-top: 10px;
-        background: linear-gradient(90deg, #8b5cf6, #d946ef);
-        border: none;
-        border-radius: 8px;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .modal-content button:hover {
-        transform: scale(1.05);
-        opacity: 0.9;
-      }
-
-      .modal-content .register {
-        margin-top: 15px;
-        font-size: 0.9rem;
-        color: #bbb;
-      }
-
-      .modal-content .register a {
-        color: #c084fc;
-        font-weight: 600;
-      }
-
-      .close-btn {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        font-size: 30px;
-        color: white;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-      }
-
-      .close-btn:hover {
-        transform: rotate(90deg);
-      }
-
-      /* Footer */
-      footer {
-        background: #0d0d1a;
-        color: #ccc;
-        text-align: center;
-        padding: 20px 10px;
-        font-size: 14px;
-        margin-top: 20px;
-        border-top: 1px solid #333;
-        animation: fadeIn 1.5s ease-in-out;
-      }
-
-      footer a {
-        color: #c084fc;
-        text-decoration: none;
-        margin: 0 10px;
-        transition: all 0.3s ease;
-      }
-
-      footer a:hover {
-        color: white;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <header class="navbar">
-      <img
-        src="logo.png"
-        alt="SLISS Logo"
-        class="logo"
-        style="width: 80px; height: auto"
-      />
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-      </nav>
-    </header>
-
-    <!-- Welcome Section -->
-    <section class="hero">
-      <img src="pogo.png" alt="SLISS Logo" class="hero-logo" />
-      <h1>WELCOME TO SLISS</h1>
-      <p>
-        <em
-          >"Education is the passport to the future, for tomorrow belongs to
-          those who prepare for it today."</em
-        >
-      </p>
-      <button class="btn" onclick="openModal()">Login</button>
-    </section>
-
-    <!-- Intro Section -->
-    <section class="about">
-      <h2>Introduction</h2>
-      <p>
-        SLISS (Student Link of Integrated Smart System) is a powerful yet
-        affordable digital platform designed to simplify academic and
-        administrative processes for schools and colleges. It replaces outdated
-        manual workflows—like maintaining separate ledgers for admissions, fees,
-        hostel allocation, and examination records—with a centralized,
-        cloud-based system that makes data accessible, accurate, and easy to
-        manage. SLISS provides a seamless experience for students, staff, and
-        administrators, creating a single source of truth for institutional
-        data.
-      </p>
-      <h3>Why SLISS</h3>
-      <p>
-        Low-Cost & Scalable: Built with cloud services most institutions already
-        use—no heavy infrastructure or licensing fees. Time-Saving: Eliminates
-        repetitive data entry and manual processes. User-Friendly: Easy for
-        staff to adopt because it uses familiar spreadsheet and form tools.
-        Real-Time Insights: Administrators get a clear, instant view of
-        institutional operations. Efficient & Reliable: Automates key workflows,
-        reduces errors, and ensures smooth communication
-      </p>
-      <h3>How It Works</h3>
-      <p>
-        SLISS connects widely used cloud tools, lightweight scripts, and simple
-        automation to create a low-cost ERP solution: Admission Management:
-        Students apply online through customizable forms, and their data
-        automatically flows into the central database. Fee Collection: Digital
-        payments generate instant, automated receipts, reducing paperwork and
-        queues. Hostel & Library Tracking: Real-time updates keep records
-        accurate and accessible to administrators. Dashboards: Key metrics like
-        admissions, occupancy, and finances are displayed live for
-        decision-making. Secure Access: Role-based logins ensure data security,
-        while regular backups protect sensitive information.
-      </p>
-    </section>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2>Login</h2>
-        <input type="email" id="email" placeholder="Email" />
-        <input type="password" id="password" placeholder="Password" />
-        <div class="options">
-          <label><input type="checkbox" /> Remember me</label>
-          <a href="#">Forgot Password?</a>
-        </div>
-        <button onclick="login()">Login</button>
-        <div class="register">
-          Don’t have an account? <a href="#">Register</a>
-        </div>
-      </div>
+  <header class="navbar">
+    <div class="nav-left">
+      <img src="logo.png" alt="SLISS logo" class="logo">
+      <div class="brand-text">SLISS</div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2025 SLISS. All rights reserved.</p>
-      <p>
-        <a href="privacy.html">Privacy Policy</a> |
-        <a href="terms.html">Terms of Service</a> |
-        <a href="contact.html">Contact Us</a>
-      </p>
-    </footer>
+    <nav class="nav-links" aria-label="Main">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+    </nav>
+  </header>
 
-    <script>
-      function openModal() {
-        document.getElementById("loginModal").style.display = "flex";
-      }
-      function closeModal() {
-        document.getElementById("loginModal").style.display = "none";
-      }
-      window.onclick = function (event) {
-        let modal = document.getElementById("loginModal");
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      };
+  <main>
+    <section class="hero" role="banner">
+      <div class="hero-left" aria-hidden="false">
+        <img src="pogo.png" alt="SLISS symbol" class="hero-logo">
+        <h1 class="big-title">WELCOME TO SLISS</h1>
+        <p class="lead-quote">
+          <em>"Education is the passport to the future, for tomorrow belongs to those who prepare for it today."</em>
+        </p>
 
-      function login() {
-        window.location.href = "erp.html";
-      }
-    </script>
-  </body>
+        <div class="cta-row">
+          <button class="btn-primary" onclick="openModal()">LOGIN</button>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+        <!-- the image should be wide and slightly shifted to the right so it crops like the screenshot -->
+        <img src="homepagepicimp.png" alt="illustration">
+      </div>
+    </section>
+
+    <!-- About Section -->
+<section class="about">
+  <div class="content-section">
+    <h2>Introduction</h2>
+    <p>
+      SLISS (Student Link of Integrated Smart System) is a powerful yet
+      affordable digital platform designed to simplify academic and
+      administrative processes for schools and colleges. It replaces outdated
+      manual workflows—like maintaining separate ledgers for admissions, fees,
+      hostel allocation, and examination records—with a centralized,
+      cloud-based system that makes data accessible, accurate, and easy to
+      manage. SLISS provides a seamless experience for students, staff, and
+      administrators, creating a single source of truth for institutional
+      data.
+    </p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why SLISS</h2>
+    <p>
+      Low-Cost & Scalable: Built with cloud services most institutions already
+      use—no heavy infrastructure or licensing fees. <br>
+      Time-Saving: Eliminates repetitive data entry and manual processes. <br>
+      User-Friendly: Easy for staff to adopt because it uses familiar
+      spreadsheet and form tools. <br>
+      Real-Time Insights: Administrators get a clear, instant view of
+      institutional operations. <br>
+      Efficient & Reliable: Automates key workflows, reduces errors, and
+      ensures smooth communication.
+    </p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It Works</h2>
+    <p>
+      SLISS connects widely used cloud tools, lightweight scripts, and simple
+      automation to create a low-cost ERP solution: <br>
+      <b>Admission Management:</b> Students apply online through customizable
+      forms, and their data automatically flows into the central database. <br>
+      <b>Fee Collection:</b> Digital payments generate instant, automated
+      receipts, reducing paperwork and queues. <br>
+      <b>Hostel & Library Tracking:</b> Real-time updates keep records accurate
+      and accessible to administrators. <br>
+      <b>Dashboards:</b> Key metrics like admissions, occupancy, and finances
+      are displayed live for decision-making. <br>
+      <b>Secure Access:</b> Role-based logins ensure data security, while
+      regular backups protect sensitive information.
+    </p>
+  </div>
+</section>
+
+
+  <!-- LOGIN MODAL (simple) -->
+  <div id="loginModal" style="display:none; position:fixed; inset:0; z-index:200; align-items:center; justify-content:center; background:rgba(0,0,0,0.6);">
+    <div style="width:360px; background:#0f1320; border-radius:16px; padding:22px; box-shadow:0 20px 60px rgba(0,0,0,0.7);">
+      <button onclick="closeModal()" style="float:right; background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer;">✕</button>
+      <h3 style="color:#fff; margin-top:6px; margin-bottom:12px;">Login to SLISS</h3>
+      <input id="email" placeholder="Email" style="width:100%;padding:10px;border-radius:8px;border:0;background:#111226;color:#fff;margin-bottom:10px;">
+      <input id="pass" placeholder="Password" type="password" style="width:100%;padding:10px;border-radius:8px;border:0;background:#111226;color:#fff;margin-bottom:12px;">
+      <button onclick="login()" style="width:100%; padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,#7b61ff,#f097ff);color:#fff;font-weight:600;cursor:pointer;">Login</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 SLISS — All rights reserved
+  </footer>
+
+  <script>
+    function openModal(){
+      document.getElementById('loginModal').style.display = 'flex';
+    }
+    function closeModal(){
+      document.getElementById('loginModal').style.display = 'none';
+    }
+    function login(){
+      // placeholder: replace with real auth logic
+      window.location.href = "erp.html";
+    }
+    // small keyboard accessibility for modal
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
 </html>
