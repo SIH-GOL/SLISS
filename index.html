@@ -25,7 +25,7 @@
     }
 
    
-    /* NAVBAR */
+    /* Header logo wala */
     .navbar{
       height:var(--nav-h);
       display:flex;
@@ -70,7 +70,7 @@
       filter:brightness(1.05);
     }
 
-    /* HERO SPLIT */
+    
     .hero{
       display:flex;
       gap:24px;
@@ -79,19 +79,18 @@
       padding: 28px 36px;
     }
 
-    /* left column (text) */
     .hero-left{
-      flex:0 0 58%; /* left column width */
+      flex:0 0 58%; 
       display:flex;
       flex-direction:column;
-      justify-content:center; /* vertical centering */
+      justify-content:center; 
       padding: 40px 48px;
-      align-items:center;     /* center horizontally inside left column */
+      align-items:center;     
       text-align:center;
     }
 
     .hero-left .hero-logo{
-      width:220px; /* larger logo above text */
+      width:220px; 
       max-width:60%;
       margin-bottom:18px;
       transition: transform .6s ease;
@@ -108,7 +107,6 @@
       letter-spacing:3px;
       text-transform:uppercase;
       text-shadow: 0 12px 30px rgba(0,0,0,0.45);
-      /* optional vintage look like screenshot */
       font-family: "Poppins", sans-serif;
     }
 
@@ -141,7 +139,6 @@
       opacity:0.98;
     }
 
-    /* right column (image) */
     .hero-right{
       flex:0 0 42%;
       position:relative;
@@ -150,7 +147,6 @@
       align-items:flex-end;
       justify-content:flex-end;
       padding-bottom:20px;
-      /* allow right column to visually extend above/below */
     }
     .hero-right img{
       height: calc(100vh - var(--nav-h) - 60px);
@@ -158,17 +154,17 @@
       width:auto;
       object-fit:cover;
       object-position: right bottom;
-      transform: translateX(40px); /* nudge to right so left area is cropped like your screenshot */
+      transform: translateX(40px); 
       filter: drop-shadow(0 40px 80px rgba(0,0,0,0.55));
       transition: transform .6s ease;
       max-width: none;
     }
     .hero-right img:hover{ transform: translateX(24px) scale(1.01); }
 
-    /* about section */
+    
     .about {
   padding: 60px 20px;
-  background: #0e0e1a; /* same background */
+  background: #0e0e1a; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -176,7 +172,7 @@
 }
 
 .content-section {
-  background: #1e1e2e; /* dark violet container */
+  background: #1e1e2e; 
   padding: 40px 50px;
   border-radius: 12px;
   max-width: 900px;
@@ -186,7 +182,7 @@
 }
 
 .content-section h2 {
-  color: #c084fc; /* violet heading */
+  color: #c084fc; 
   margin-bottom: 20px;
   font-size: 26px;
   font-weight: 700;
@@ -198,10 +194,8 @@
   line-height: 1.7;
 }
 
-    /* footer */
     footer{ padding:26px; text-align:center; color:#cfcfcf; font-size:14px; }
 
-    /* responsive */
     @media (max-width:1100px){
       .hero{ padding:22px 20px; gap:12px; }
       .hero-left{ flex: 1 1 55%; padding:28px 20px; }
@@ -253,12 +247,10 @@
       </div>
 
       <div class="hero-right" aria-hidden="true">
-        <!-- the image should be wide and slightly shifted to the right so it crops like the screenshot -->
         <img src="homepagepicimp.png" alt="illustration">
       </div>
     </section>
 
-    <!-- About Section -->
 <section class="about">
   <div class="content-section">
     <h2>Introduction</h2>
@@ -309,8 +301,7 @@
   </div>
 </section>
 
-
-  <!-- LOGIN MODAL (simple) -->
+   
   <div id="loginModal" style="display:none; position:fixed; inset:0; z-index:200; align-items:center; justify-content:center; background:rgba(0,0,0,0.6);">
     <div style="width:360px; background:#0f1320; border-radius:16px; padding:22px; box-shadow:0 20px 60px rgba(0,0,0,0.7);">
       <button onclick="closeModal()" style="float:right; background:transparent; border:none; color:#fff; font-size:20px; cursor:pointer;">✕</button>
@@ -333,10 +324,8 @@
       document.getElementById('loginModal').style.display = 'none';
     }
     function login(){
-      // placeholder: replace with real auth logic
       window.location.href = "erp.html";
     }
-    // small keyboard accessibility for modal
     document.addEventListener('keydown', (e)=>{
       if(e.key === 'Escape') closeModal();
     });
